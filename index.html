@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to erftp!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to erftp!</h1>
+<p>Erftp a is build from alpine, nginx and sftp.</p>
+
+<h3>Usage:</h3>
+<ul>
+    <li>1. 使用 http 访问文件时，其中只有 public 文件夹下的内容可以公开，主页文件是 index.html</li>
+    <li>2. 使用 sftp 访问文件时，用户名、密码和端口请联系管理员。</li>
+    <li>3. 用户根目录下修改文件夹和文件。 home 文件夹作为私密文件，public 文件夹作为公开文件夹（可以提供静态页面服务）。</li>
+    <li>4. 管理员请配置 sftpusers 文件作为用户文件配置。</li>
+    <li>5. docker 中的 nginx 端口是 80 ，ssh 端口是 22 。</li>
+</ul>
+
+<p><em>Thank you for using erftp.</em></p>
+</body>
+</html>
+
