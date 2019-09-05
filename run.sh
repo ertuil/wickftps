@@ -14,7 +14,7 @@ for line in `cat /app/sftpusers`
 do
     u=`echo $line | cut -d ':' -f1`
     p=`echo $line | cut -d ':' -f2`
-    if [[ ! -e  "/app/sftp/$u"]]; then
+    if [[ -e  "/app/sftp/$u" ]]; then
         echo "skip user $u"
         continue
     fi 
