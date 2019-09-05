@@ -2,9 +2,8 @@ FROM alpine:3.10.2
 LABEL maintainer="ertuil"
 
 EXPOSE 22 80
-RUN apk add --no-cache openssh-server nginx bash tzdata
-RUN mkdir -pv /run/nginx
-RUN addgroup sftp && mkdir -pv /app/sftp && chmod -R 755 /app
+RUN apk add --no-cache openssh-server nginx bash tzdata && mkdir -pv /run/nginx
+RUN addgroup sftp && mkdir -pv /app/sftp /var/app && chmod -R 755 /app
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     sed -i "s/Subsystem.*/Subsystem sftp internal-sftp/g" /etc/ssh/sshd_config && \
@@ -19,10 +18,12 @@ RUN echo "Match Group sftp">> /etc/ssh/sshd_config && \
     echo "AllowTcpForwarding no"  >> /etc/ssh/sshd_config 
 
 ADD default.conf /etc/nginx/conf.d/default.conf
-ADD index.html /app/sftp/index.html
+ADD index.html /var/app/sftp/index.html
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
 WORKDIR /app
-ADD run.sh .
-RUN chmod +x run.sh
 ADD sftpusers .
 
-CMD [ "sh","-c","/app/run.sh"]
+VOLUME [ "/app" ]
+
+CMD [ "sh","-c","/run.sh"]

@@ -1,16 +1,30 @@
 #!/usr/bin/env sh
+
+echo "starting erftp"
+
+if [[ ! -e "/app/sftpusers" ]]; then
+	touch /app/sftpusers
+fi
+
+if [[ ! -e "/app/sftp" ]]; then
+	cp -rf /var/app/sftp /app
+fi
+
 for line in `cat /app/sftpusers`
 do
     u=`echo $line | cut -d ':' -f1`
     p=`echo $line | cut -d ':' -f2`
+    if [[ ! -e  "/app/sftp/$u"]]; then
+        echo "skip user $u"
+        continue
+    fi 
     adduser  -G sftp -D -H -s /bin/false $u
     echo "$u:$p" | chpasswd
-    mkdir -pv /app/sftp/$u/home /app/sftp/$u/public
+    mkdir -pv /app/sftp/$u/home /app/sftp/$u/public /app/sftp/$u/share
     # chown root:sftp /app/sftp/$u
     # chown root:sftp /app/sftp/$u/home /app/sftp/$u/public
-    chmod 777 /app/sftp/$u/home /app/sftp/$u/public
+    chmod 777 /app/sftp/$u/home /app/sftp/$u/public /app/sftp/$u/share
 done
 
 nginx -c /etc/nginx/nginx.conf
-/usr/sbin/sshd
-/bin/bash
+/usr/sbin/sshd -D
