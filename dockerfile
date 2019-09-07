@@ -12,6 +12,7 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     ssh-keygen -t ed25519 -P "" -f /etc/ssh/ssh_host_ed25519_key
 
 RUN echo "Match Group sftp">> /etc/ssh/sshd_config && \
+    echo "passwordAuthentication yes" >> /etc/ssh/sshd_config && \
     echo "ForceCommand internal-sftp" >> /etc/ssh/sshd_config && \
     echo "ChrootDirectory /app/sftp/%u" >> /etc/ssh/sshd_config && \
     echo "X11Forwarding no" >>  /etc/ssh/sshd_config && \
