@@ -2,7 +2,7 @@ FROM alpine:3.10.2
 LABEL maintainer="ertuil"
 
 EXPOSE 22 80
-RUN apk add --no-cache openssh-server nginx bash tzdata && mkdir -pv /run/nginx
+RUN apk add --no-cache openssh-server nginx bash tzdata openssl && mkdir -pv /run/nginx
 RUN addgroup sftp && mkdir -pv /app/sftp /var/app && chmod -R 755 /app
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \

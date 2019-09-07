@@ -10,6 +10,10 @@ if [[ ! -e "/app/sftp" ]]; then
 	cp -rf /var/app/sftp /app
 fi
 
+if [[ ! -e "/app/htpasswd" ]]; then
+	touch /app/htpasswd
+fi
+
 for line in `cat /app/sftpusers`
 do
     u=`echo $line | cut -d ':' -f1`
@@ -18,8 +22,10 @@ do
         echo "skip user $u"
         continue
     fi 
+    echo "add user --> username: $u password: $p"
     adduser  -G sftp -D -H -s /bin/false $u
     echo "$u:$p" | chpasswd
+    echo "$u:$(openssl passwd -salt erftp -crypt $p)" >> /app/htpasswd
     mkdir -pv /app/sftp/$u/home /app/sftp/$u/public /app/sftp/$u/share
     # chown root:sftp /app/sftp/$u
     # chown root:sftp /app/sftp/$u/home /app/sftp/$u/public
