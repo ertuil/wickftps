@@ -19,5 +19,6 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 | PASV_ADDRESS | none | the public internet address |
 | PASV_MAX_PORT | 3010 | maxinum port for PASV mode |
 | PASV_MIN_PORT | 3000 | maninum port for PASV mode |
+| NGINX_ADDRESS | none | Nginx server_name |
 | FTP_SSL | "false" | enable FTP SSL Mode |
 | ENABLE_SSH | "false" | run ssh service |
