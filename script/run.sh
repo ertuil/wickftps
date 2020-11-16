@@ -19,7 +19,7 @@ chown -R $USERNAME:$USERNAME /app/www
 echo "set up nginx" 
 htpasswd -c -b /etc/nginx/htpasswd $USERNAME $PASSWORD
 
-sed -i "s/user nobody;/user ${USERNAME};/" /etc/nginx/nginx.conf
+sed -i "s/user nginx;/user ${USERNAME};/" /etc/nginx/nginx.conf
 if [ ! -z "${NGINX_ADDRESS}" ]; then
     sed -i "s/server_name _;/server_name ${NGINX_ADDRESS};/" /etc/nginx/nginx.conf
 fi
