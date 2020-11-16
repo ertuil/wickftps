@@ -20,7 +20,7 @@ echo "set up nginx"
 htpasswd -c -b /etc/nginx/htpasswd $USERNAME $PASSWORD
 echo "user ${USERNAME};" >> /etc/nginx/nginx.conf
 if [ ! -z "${NGINX_ADDRESS}" ]; then
-    sed -i "s/server_name _;/server_name ${NGINX_ADDRESS}/" /etc/nginx/nginx.conf
+    sed -i "s/server_name _;/server_name ${NGINX_ADDRESS};/" /etc/nginx/nginx.conf
 fi
 
 # step 4: set up vsftpd
