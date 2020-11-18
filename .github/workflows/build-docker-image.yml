@@ -1,7 +1,8 @@
 name: Publish Docker image
 on:
   push:
-    branches: main
+    tags:
+      - 'v*'
 
 jobs:
   push_to_registry:
@@ -28,3 +29,4 @@ jobs:
           push: true
           tags: |
             ertuil/wickftps:latest
+            ertuil/wickftps:${GITHUB_REF#refs/*/}
