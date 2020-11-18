@@ -1,6 +1,6 @@
 # wickftps
 
-A simple docker container wich ftp(s), www and ssh. It is a simple way to save your files.
+A simple docker container wich ftp(s), www, aria2 and ssh. It is a simple way to save your files.
 
 ## Deploy:
 
@@ -8,7 +8,7 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 2. Install `docker` and `docker-compose`
 3. Config `docker-compose.yml`
 4. Run `docker-compose up -d`
-5. Config your firewalls to allow these ports: 20, 21, 3000-3010, 22(optional), 8080(optional)
+5. Config your firewalls to allow these ports: 20, 21, 3000-3010, 22(optional), 8080(optional), 6800(optional).
 
 ## Environments:
 
@@ -22,6 +22,7 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 | NGINX_ADDRESS | none | Nginx server_name |
 | FTP_SSL | "false" | enable FTP SSL Mode |
 | ENABLE_SSH | "false" | run ssh service |
+| ENABLE_ARIA2 | "false" | run aria2 service |
 
 ## Usages
 
@@ -32,3 +33,4 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 4. FTP control port is at 21, and passive mode needs 3000-3010 ports to be opened.
 5. If ftps is enabled, use `Explicit FTPS Mode`.
 6. If sshd is enabled, default port is 22. `Username` and `Password` are the same.
+7. If aria2 is enabled, jsonrpc address is at `http://<your_address>/jsonrpc` and password is `USER_PASSWORD`
