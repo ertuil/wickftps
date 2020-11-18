@@ -74,6 +74,24 @@ startretries=5
 EOF
 fi
 
+#step 6: set up aria2
+echo "set up aria2"
+if [ ! -z "$ENABLE_ARIA2" ]; then
+    echo "rpc-secret=${PASSWORD}" >> /etc/aria2.conf
+    touch /app/conf/aria2.session
+    cat  << EOF >> /etc/supervisor/conf.d/supervisord.conf
+[program:aria2]
+command=/usr/bin/aria2c --console-log-level=warn --enable-rpc --rpc-listen-all --conf-path=/etc/aria2.conf
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+autorestart=true
+startretries=5
+user=${USERNAME}
+EOF
+fi
+
 #
 echo "start all services"
 /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
