@@ -4,11 +4,11 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 
 ## Usage:
 
-1. Git clone this resp
+1. Git clone this resp (or just download `docker-compose.yml`)
 2. Install `docker` and `docker-compose`
 3. Config `docker-compose.yml`
 4. Run `docker-compose up -d`
-5. Config your firewalls to allow these ports
+5. Config your firewalls to allow these ports: 20, 21, 3000-3010, 22(optional), 8080(optional)
 
 ## Environments:
 
