@@ -14,8 +14,8 @@ services:
      - "3000-3010:3000-3010"
      - "8080:80"
     environment:
-     USER_USERNAME: layton
-     USER_PASSWORD: layton
+     USER_USERNAME: username
+     USER_PASSWORD: password
      PASV_ADDRESS: 127.0.0.1
      PASV_MAX_PORT: 3010
      PASV_MIN_PORT: 3000
