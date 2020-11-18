@@ -1,7 +1,12 @@
 version: '3'
 services:
   ftps:
-    build: .
+    image: ertuil/wickftps:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
     ports:
      - "20:20"
      - "21:21"
