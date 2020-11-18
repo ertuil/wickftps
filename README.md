@@ -2,7 +2,7 @@
 
 A simple docker container wich ftp(s), www and ssh. It is a simple way to save your files.
 
-## Usage:
+## Deploy:
 
 1. Git clone this resp (or just download `docker-compose.yml`)
 2. Install `docker` and `docker-compose`
@@ -22,3 +22,13 @@ A simple docker container wich ftp(s), www and ssh. It is a simple way to save y
 | NGINX_ADDRESS | none | Nginx server_name |
 | FTP_SSL | "false" | enable FTP SSL Mode |
 | ENABLE_SSH | "false" | run ssh service |
+
+## Usages
+
+1. Web root is `/app/data/Shared/www`. Index is `http://<your_address>/`
+2. Public sharable files can be placed in `/app/data/Shared/public`, it is visible publicly via `http://<your_address>/public`
+3. Privatefiles can be placed in `/app/data/Shared/private`, it is visible via `http://<your_address>/private`. But `username` and `password` must be provided to access thses files.
+4. Other files can be placed int `/app/data/Documents`, `/app/data/Pictures` and so on.
+4. FTP control port is at 21, and passive mode needs 3000-3010 ports to be opened.
+5. If ftps is enabled, use `Explicit FTPS Mode`.
+6. If sshd is enabled, default port is 22. `Username` and `Password` are the same.
