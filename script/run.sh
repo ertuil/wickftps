@@ -47,6 +47,7 @@ ssl_tlsv1=YES
 ssl_sslv2=NO
 ssl_sslv3=NO
 ssl_ciphers=HIGH
+require_ssl_reuse=NO
 EOF
 fi
 
