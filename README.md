@@ -4,7 +4,7 @@ A simple docker container wich ftp(s), www, aria2 and ssh. It is a simple way to
 
 ## Deploy:
 
-1. Git clone this resp (or just download `docker-compose.yml`)
+1. Git clone this resp (or just download `docker-compose.yml`): `wget https://raw.githubusercontent.com/ertuil/wickftps/main/docker-compose.yml`
 2. Install `docker` and `docker-compose`
 3. Config `docker-compose.yml`
 4. Run `docker-compose up -d`
