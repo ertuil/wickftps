@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 # step 1: set up users
 USERNAME=${USER_USERNAME:-"admin"}
